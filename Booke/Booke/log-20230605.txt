@@ -1,0 +1,30 @@
+2023-06-05 19:14:18.563 +03:00 [INF] Now listening on: https://localhost:7220
+2023-06-05 19:14:18.812 +03:00 [INF] Now listening on: http://localhost:5277
+2023-06-05 19:14:18.841 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-06-05 19:14:18.848 +03:00 [INF] Hosting environment: Development
+2023-06-05 19:14:18.853 +03:00 [INF] Content root path: C:\Users\ffs\Desktop\Bookl\Book2\Booke\Booke\
+2023-06-05 19:14:19.922 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7220/ - -
+2023-06-05 19:14:20.285 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7220/ - - - 404 0 - 373.5653ms
+2023-06-05 19:16:04.781 +03:00 [INF] Now listening on: https://localhost:7220
+2023-06-05 19:16:04.942 +03:00 [INF] Now listening on: http://localhost:5277
+2023-06-05 19:16:04.978 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-06-05 19:16:05.006 +03:00 [INF] Hosting environment: Development
+2023-06-05 19:16:05.018 +03:00 [INF] Content root path: C:\Users\ffs\Desktop\Bookl\Book2\Booke\Booke\
+2023-06-05 19:16:06.013 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7220/ - -
+2023-06-05 19:16:06.448 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7220/ - - - 404 0 - 455.3957ms
+2023-06-05 19:17:38.364 +03:00 [INF] Now listening on: https://localhost:7220
+2023-06-05 19:17:38.540 +03:00 [INF] Now listening on: http://localhost:5277
+2023-06-05 19:17:38.577 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-06-05 19:17:38.585 +03:00 [INF] Hosting environment: Development
+2023-06-05 19:17:38.590 +03:00 [INF] Content root path: C:\Users\ffs\Desktop\Bookl\Book2\Booke\Booke\
+2023-06-05 19:17:39.410 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7220/ - -
+2023-06-05 19:17:39.757 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7220/ - - - 404 0 - 368.0357ms
+2023-06-05 19:19:34.487 +03:00 [INF] Now listening on: https://localhost:7220
+2023-06-05 19:19:34.634 +03:00 [INF] Now listening on: http://localhost:5277
+2023-06-05 19:19:34.654 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-06-05 19:19:34.660 +03:00 [INF] Hosting environment: Development
+2023-06-05 19:19:34.663 +03:00 [INF] Content root path: C:\Users\ffs\Desktop\Bookl\Book2\Booke\Booke\
+2023-06-05 19:19:35.351 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7220/ - -
+2023-06-05 19:19:35.711 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7220/ - - - 404 0 - 373.4798ms
+2023-06-05 19:45:24.372 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7220/ - -
+2023-06-05 19:45:24.377 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7220/ - - - 404 0 - 4.4400ms
