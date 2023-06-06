@@ -9,6 +9,7 @@ namespace BookStore.DL.Interfaces
         Task<Book?> GetById(Guid id);
         Task Add(Book author);
         Task Delete(Guid id);
+        Task Update(Book book);
     }
 }
 

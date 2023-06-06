@@ -8,8 +8,14 @@ namespace BookStore.DL.Interfaces
 
         Task<Author> GetById(Guid id);
 
-        Task AddAuthor(Author author);
+        Task Add(Author book);  
+
+        Task AddAuthor(Author author);  
 
         Task DeleteAuthor(Guid id);
+
+        Task Update(Author book);
+
+        Task<IEnumerable<Author>> GetAllByBookId(Guid bookId);
     }
 }

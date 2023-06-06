@@ -1,6 +1,6 @@
-﻿using AutoMapper;
-using BookStore.BL.Interfaces;
+﻿using BookStore.BL.Interfaces;
 using BookStore.DL.Interfaces;
+using BookStore.DL.Repo.Mongo;
 using BookStore.Models.Data;
 using BookStore.Models.Request;
 
@@ -9,14 +9,16 @@ namespace BookStore.BL.Services
     public class AuthorService : IAuthorService
     {
         private readonly IAuthorRepository _authorRepository;
-        private readonly IMapper _mapper;
-
+        private readonly IBookService _bookService;
+            
         public AuthorService(
             IAuthorRepository authorRepository,
-            IMapper mapper)
+            IBookService bookService)
         {
             _authorRepository = authorRepository;
-            _mapper = mapper;
+  
+            _bookService = bookService;
+
         }
 
         public async Task<IEnumerable<Author>> GetAll()
@@ -26,21 +28,42 @@ namespace BookStore.BL.Services
 
         public async Task<Author> GetById(Guid id)
         {
-            return await _authorRepository.GetById(id);
+            var result = await _authorRepository.GetById(id);
+            if (result != null) { 
+                result.Name = $"!{result.Name}";
+            }
+            return result;
         }
 
-        public async Task AddAuthor(AddAuthorRequest authorRequest)
+        public async Task<Author?> Add(Author author)
         {
-            var author = _mapper.Map<Author>(authorRequest);
-
             author.Id = Guid.NewGuid();
 
-            await _authorRepository.AddAuthor(author);
+            var book =
+                await _bookService.GetById(author.BookId);
+
+            if (author == null) return null;
+            var authorBooks =
+                await _authorRepository
+                    .GetAllByBookId(author.BookId);
+
+            var titleForBookExist =
+                authorBooks.Any(b => b.Name == author.Name);
+                
+            if (titleForBookExist) return null;
+
+            await _authorRepository.Add(author);    
+
+            return author;
+        }
+        public async Task Delete(Guid id)
+        {
+            await _bookRepository.Delete(id);
         }
 
-        public async Task DeleteAuthor(Guid id)
+        public async Task Update(Book book)
         {
-            await _authorRepository.DeleteAuthor(id);
+            await _bookRepository.Update(book);
         }
     }
 }
