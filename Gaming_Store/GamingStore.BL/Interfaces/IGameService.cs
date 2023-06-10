@@ -7,7 +7,7 @@ namespace GamingStore.BL.Interfaces
     {
         Task<IEnumerable<Game>> GetAll();
         Task<Game> GetById(Guid id);
-        Task AddGame(AddGameRequest game);
+        Task <Game?> AddGame(AddGameRequest game);
         Task DeleteGame(Guid id);
         Task UpdateGame(UpdateGameRequest game);
     }

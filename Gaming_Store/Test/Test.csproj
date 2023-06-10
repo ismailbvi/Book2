@@ -26,6 +26,7 @@
 	<ItemGroup>
 		<ProjectReference Include="..\GamingStore.BL\GamingStore.BL.csproj" />
 		<ProjectReference Include="..\GamingStore.DL\GamingStore.DL.csproj" />
+		<ProjectReference Include="..\Gaming_Store\Gaming_Store.csproj" />
 		<ProjectReference Include="..\Gaming_Store_Data\Gaming_Store_Data.csproj" />
 	</ItemGroup>
 	

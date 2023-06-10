@@ -6,7 +6,7 @@ using GamingStore.BL.Interfaces;
 namespace Gaming_Store.Control
 {
         [ApiController]
-        [Route("[controller]")]
+    [Route("api/[controller]")]
         public class OrderController : ControllerBase
         {
             private readonly IOrderService _orderService;

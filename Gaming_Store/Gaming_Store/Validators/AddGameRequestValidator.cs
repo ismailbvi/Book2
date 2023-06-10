@@ -11,7 +11,7 @@ namespace Gaming_Store.Validators
             RuleFor(x => x.Name)
                 .NotNull()
                 .NotEmpty().WithMessage("Dai mu");
-            RuleFor(x => x.Name.Length)
+            RuleFor(x => x.Developer.Length)
                 .GreaterThan(5)
                 .WithMessage("Minimum 5 characters")
                 .LessThan(10).WithMessage("Maximum 10 characters");
