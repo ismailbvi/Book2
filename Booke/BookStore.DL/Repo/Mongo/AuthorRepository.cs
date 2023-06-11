@@ -42,16 +42,16 @@ namespace BookStore.DL.Repo.Mongo
                 .FirstOrDefaultAsync();
         }
 
-        public async Task AddAuthor(Author author)
+        public async Task Add(Author author)
         {
             await _authors.InsertOneAsync(author);
         }
 
-        public async Task DeleteAuthor(Guid id)
+        public async Task Delete(Guid id)
         {
             await _authors
                 .DeleteOneAsync(a => a.Id == id);
         }
-
+        public async Task Update
     }
 }

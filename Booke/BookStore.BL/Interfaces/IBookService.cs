@@ -1,5 +1,6 @@
 ﻿using BookStore.Models.Data;
 using BookStore.Models.Request;
+using MongoDB.Driver;
 
 namespace BookStore.BL.Interfaces
 {
@@ -9,5 +10,6 @@ namespace BookStore.BL.Interfaces
         Task<Book?> GetById(Guid id);
         Task Add(AddBookRequest author);
         Task Delete(Guid id);
+        Task Update(UpdateBookRequest book);
     }
 }

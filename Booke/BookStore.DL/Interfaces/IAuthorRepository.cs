@@ -6,13 +6,11 @@ namespace BookStore.DL.Interfaces
     {
         Task<IEnumerable<Author>> GetAll();
 
-        Task<Author> GetById(Guid id);
+        Task<Author?> GetById(Guid id);
 
         Task Add(Author book);  
-
-        Task AddAuthor(Author author);  
-
-        Task DeleteAuthor(Guid id);
+            
+        Task Delete(Guid id);   
 
         Task Update(Author book);
 

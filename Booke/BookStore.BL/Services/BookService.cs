@@ -1,5 +1,6 @@
 ﻿using BookStore.BL.Interfaces;
 using BookStore.DL.Interfaces;
+using BookStore.DL.Repo.Mongo;
 using BookStore.Models.Data;
 using BookStore.Models.Request;
 using Microsoft.Extensions.Logging;
@@ -56,6 +57,10 @@ namespace BookStore.BL.Services
         public async Task Delete(Guid id)
         {
             await _bookRepository.Delete(id);
+        }
+        public async Task Update(Book book)
+        {
+            await _bookRepository.Update(book);
         }
     }
 }

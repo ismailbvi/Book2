@@ -58,12 +58,12 @@ namespace BookStore.BL.Services
         }
         public async Task Delete(Guid id)
         {
-            await _bookRepository.Delete(id);
+            await _authorRepository.Delete(id);
         }
 
-        public async Task Update(Book book)
-        {
-            await _bookRepository.Update(book);
+        public async Task Update(Author author)
+        { 
+            await _authorRepository.Update(author);
         }
     }
 }

@@ -19,7 +19,7 @@ namespace Test
                 Id = new Guid("b5de2576-121f-4a38-9fb4-36362e3714f5"),
                 BookId = new Guid("5534e5d5-a588-43b7-be8a-20f6521cdcb0"),
                 Name = "ZaHarry Baharov "
-              
+
             },
              new Author()
             {
@@ -38,10 +38,10 @@ namespace Test
                 Description = "FUNtazi",
                 Title = "Book0"
             },
-        
+
         };
-        public AuthorServiceTest() 
-        { 
+        public AuthorServiceTest()
+        {
             _authorRepository = new Mock<IAuthorRepository>();
             _bookService = new Mock<IBookService>();
         }
@@ -58,7 +58,7 @@ namespace Test
             //inject
             var service = new AuthorService(
                     _authorRepository.Object, _bookService.Object);
-                
+
             //Act
             var result = await service.GetAll();
 
@@ -74,7 +74,7 @@ namespace Test
         {
             //setup
             var authorId = new Guid();
-            var expectedAuthor =  Authors.First(r => r.Id == authorId);
+            var expectedAuthor = Authors.First(r => r.Id == authorId);
             var expectedName = $"!{expectedAuthor.Name}";
 
             _authorRepository.Setup(
@@ -82,8 +82,8 @@ namespace Test
                 .Returns(async () =>
                 Authors.FirstOrDefault(r => r.Id == authorId));
             //inject
-            var service = new AuthorService(_authorRepository.Object);
-            
+            var service = new AuthorService(_authorRepository.Object, _bookService.Object);
+
             //Act
             var result = await service.GetById(authorId);
 
@@ -104,7 +104,7 @@ namespace Test
                 .Returns(async () =>
                     Books.FirstOrDefault(x => x.Id == authorId));
             //inject
-            var service = new AuthorService(_authorRepository.Object, _authorService.Object);
+            var service = new AuthorService(_authorRepository.Object, _bookService.Object);
 
             //Act
             var result = await service.GetById(authorId);
@@ -133,7 +133,7 @@ namespace Test
                     r =>
                         r.GetAllByBookId(authorToAdd.BookId))
                     .Returns(() =>
-                        Task.FromResult(Books.Where(r => r.BookId == authorToAdd.BookId)));
+                        Task.FromResult(Authors.Where(r => r.BookId == authorToAdd.BookId)));
 
             _authorRepository.Setup(r =>
                 r.Add(It.IsAny<Author>()))
@@ -146,7 +146,7 @@ namespace Test
             var service = new AuthorService(_authorRepository.Object, _bookService.Object);
 
             //Act
-            await service.Add(bookToAdd);
+            await service.Add(authorToAdd);
 
             //Assert
             Assert.Equal(expectedAuthorCount, Authors.Count);
@@ -189,6 +189,5 @@ namespace Test
             Assert.Null(result);
         }
     }
-}
-    }
+
 }
