@@ -55,6 +55,7 @@ namespace Gaming_Store.Control
             public async Task UpdateOrder([FromBody] Order order)
             {
                 await _orderService.UpdateOrder(order);
+                
             }
 
             [HttpDelete("Delete")]
