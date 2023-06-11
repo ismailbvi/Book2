@@ -1,0 +1,13 @@
+2023-06-10 22:02:34.369 +03:00 [INF] Now listening on: https://localhost:7111
+2023-06-10 22:02:36.389 +03:00 [INF] Now listening on: http://localhost:5111
+2023-06-10 22:02:36.672 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-06-10 22:02:36.949 +03:00 [INF] Hosting environment: Development
+2023-06-10 22:02:37.648 +03:00 [INF] Content root path: C:\Users\ffs\Desktop\Bookl\Book2\Booke\Booke\
+2023-06-10 22:02:39.288 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7111/swagger/index.html - -
+2023-06-10 22:02:40.790 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7111/_framework/aspnetcore-browser-refresh.js - -
+2023-06-10 22:02:40.888 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7111/_vs/browserLink - -
+2023-06-10 22:02:40.898 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7111/_framework/aspnetcore-browser-refresh.js - - - 200 11980 application/javascript;+charset=utf-8 106.2324ms
+2023-06-10 22:02:40.900 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7111/swagger/index.html - - - 200 - text/html;charset=utf-8 1655.6617ms
+2023-06-10 22:02:41.334 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7111/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 445.6574ms
+2023-06-10 22:02:44.652 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7111/swagger/v1/swagger.json - -
+2023-06-10 22:02:45.169 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7111/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 517.1942ms

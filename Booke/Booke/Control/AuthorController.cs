@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using BookStore.BL.Interfaces;
+using BookStore.BL.Services;
 using BookStore.Models.Data;
 using BookStore.Models.Request;
 using Microsoft.AspNetCore.Mvc;
@@ -33,24 +34,31 @@ namespace Booke.Control
         [HttpGet("GetById")]
         public async Task<IActionResult> GetById(Guid id)
         {
+            if (id == null) return BadRequest(id);
+
             var result = await _authorService.GetById(id);
 
-            if (result == null) return NotFound();
+            if (result != null) return Ok(result);
 
-            return Ok(result);
+            return NotFound();
         }
 
         [HttpPost("Add")]
-        public async Task<IActionResult> Add([FromBody] AddAuthorRequest author)
+        public async Task<IActionResult> Add([FromBody] Author author)
         {
-            await _authorService.AddAuthor(author);
+            await _authorService.Add(author);
             return Ok();
+        }
+        [HttpPost("Update")]
+        public async Task Update([FromBody] Author author)
+        {
+            await _authorService.Update(author);
         }
 
         [HttpDelete("Delete")]
         public async Task<IActionResult> Delete(Guid authorId)
         {
-            await _authorService.DeleteAuthor(authorId);
+            await _authorService.Delete(authorId);
 
             return Ok();
         }
