@@ -10,6 +10,5 @@ namespace BookStore.BL.Interfaces
         Task<Book?> GetById(Guid id);
         Task Add(AddBookRequest author);
         Task Delete(Guid id);
-        Task Update(UpdateBookRequest book);
     }
 }

@@ -52,6 +52,22 @@ namespace BookStore.DL.Repo.Mongo
             await _authors
                 .DeleteOneAsync(a => a.Id == id);
         }
-        public async Task Update
+        public async Task Update(Author author)
+        {
+            var filter =
+                Builders<Author>.Filter.Eq(s => s.Id, author.Id);
+            var update = Builders<Author>
+                .Update.Set(s =>
+                    s.Bio, author.Bio);
+
+            await _authors.UpdateOneAsync(filter, update);
+        }
+
+        public async Task<IEnumerable<Author>> GetAllByBookId(Guid bookId)
+        {
+            return await _authors
+                .Find(x => x.BookId == bookId)
+                .ToListAsync();
+        }
     }
 }

@@ -4,6 +4,7 @@ using BookStore.DL.Repo.Mongo;
 using BookStore.Models.Data;
 using BookStore.Models.Request;
 using Microsoft.Extensions.Logging;
+using MongoDB.Driver;
 
 namespace BookStore.BL.Services
 {
@@ -57,10 +58,6 @@ namespace BookStore.BL.Services
         public async Task Delete(Guid id)
         {
             await _bookRepository.Delete(id);
-        }
-        public async Task Update(Book book)
-        {
-            await _bookRepository.Update(book);
         }
     }
 }
