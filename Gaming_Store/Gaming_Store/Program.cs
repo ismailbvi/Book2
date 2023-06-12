@@ -38,11 +38,11 @@ namespace Gaming_Store
 
             // Add services to the container.
             builder.Services
-                .AddSingleton<IGameRepository>();
+                .AddSingleton<IGameRepository, MongoGameRepo>();
             builder.Services
                 .AddSingleton<IGameService, GameService>();
             builder.Services
-                .AddSingleton<IOrderRepository>();
+                .AddSingleton<IOrderRepository, MongoOrderRepo>();
             builder.Services
                 .AddSingleton<IOrderService, OrderService>();
             
