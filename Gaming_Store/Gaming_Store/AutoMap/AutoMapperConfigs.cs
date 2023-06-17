@@ -11,6 +11,6 @@ namespace Gaming_Store.AutoMap
                 CreateMap<AddGameRequest,Game>();
                 CreateMap<UpdateGameRequest, Game>();
             }
-        }
+        }   
 
     }
