@@ -1,0 +1,31 @@
+2023-06-17 18:43:27.616 +03:00 [INF] Now listening on: https://localhost:7083
+2023-06-17 18:43:27.738 +03:00 [INF] Now listening on: http://localhost:5083
+2023-06-17 18:43:27.761 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-06-17 18:43:27.769 +03:00 [INF] Hosting environment: Development
+2023-06-17 18:43:27.781 +03:00 [INF] Content root path: C:\Users\ffs\Desktop\Bookl\Book2\Gaming_Store\Gaming_Store\
+2023-06-17 18:43:35.792 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7083/swagger/index.html - -
+2023-06-17 18:43:37.561 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7083/_framework/aspnetcore-browser-refresh.js - -
+2023-06-17 18:43:37.749 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7083/_vs/browserLink - -
+2023-06-17 18:43:37.761 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7083/swagger/index.html - - - 200 - text/html;charset=utf-8 1984.1709ms
+2023-06-17 18:43:37.761 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7083/_framework/aspnetcore-browser-refresh.js - - - 200 11994 application/javascript;+charset=utf-8 199.3490ms
+2023-06-17 18:43:38.069 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7083/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 319.6504ms
+2023-06-17 18:43:38.593 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7083/swagger/v1/swagger.json - -
+2023-06-17 18:43:39.173 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7083/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 580.2645ms
+2023-06-17 18:57:26.928 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7083/_framework/aspnetcore-browser-refresh.js - -
+2023-06-17 18:57:26.929 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7083/_framework/aspnetcore-browser-refresh.js - - - 200 11994 application/javascript;+charset=utf-8 1.6056ms
+2023-06-17 19:03:29.250 +03:00 [INF] Now listening on: https://localhost:7083
+2023-06-17 19:03:29.452 +03:00 [INF] Now listening on: http://localhost:5083
+2023-06-17 19:03:29.499 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-06-17 19:03:29.515 +03:00 [INF] Hosting environment: Development
+2023-06-17 19:03:29.521 +03:00 [INF] Content root path: C:\Users\ffs\Desktop\Bookl\Book2\Gaming_Store\Gaming_Store\
+2023-06-17 19:03:30.281 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7083/swagger/index.html - -
+2023-06-17 19:03:31.765 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7083/swagger/index.html - - - 200 - text/html;charset=utf-8 1494.8832ms
+2023-06-17 19:03:31.887 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7083/_framework/aspnetcore-browser-refresh.js - -
+2023-06-17 19:03:31.887 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7083/_vs/browserLink - -
+2023-06-17 19:03:31.899 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7083/_framework/aspnetcore-browser-refresh.js - - - 200 11994 application/javascript;+charset=utf-8 11.7137ms
+2023-06-17 19:03:32.098 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7083/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 211.0219ms
+2023-06-17 19:03:32.461 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7083/swagger/v1/swagger.json - -
+2023-06-17 19:03:32.989 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7083/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 527.8347ms
+2023-06-17 19:04:28.162 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7083/Game/GetById - -
+2023-06-17 19:04:28.178 +03:00 [INF] Executing endpoint 'Gaming_Store.Control.GameController.GetById (Gaming_Store)'
+2023-06-17 19:04:28.297 +03:00 [INF] Route matched with {action = "GetById", controller = "Game"}. Executing controller action with signature System.Threading.Tasks.Task`1[Gaming_Store_Data.Data.Game] GetById(System.Guid) on controller Gaming_Store.Control.GameController (Gaming_Store).

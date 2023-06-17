@@ -28,3 +28,16 @@
 2023-06-12 14:10:18.172 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7083/Game/GetAllGames - -
 2023-06-12 14:10:18.192 +03:00 [INF] Executing endpoint 'Gaming_Store.Control.GameController.GetAll (Gaming_Store)'
 2023-06-12 14:10:18.259 +03:00 [INF] Route matched with {action = "GetAll", controller = "Game"}. Executing controller action with signature System.Threading.Tasks.Task`1[System.Collections.Generic.IEnumerable`1[Gaming_Store_Data.Data.Game]] GetAll() on controller Gaming_Store.Control.GameController (Gaming_Store).
+2023-06-12 15:37:29.193 +03:00 [INF] Now listening on: https://localhost:7083
+2023-06-12 15:37:29.287 +03:00 [INF] Now listening on: http://localhost:5083
+2023-06-12 15:37:29.306 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-06-12 15:37:29.313 +03:00 [INF] Hosting environment: Development
+2023-06-12 15:37:29.316 +03:00 [INF] Content root path: C:\Users\ffs\Desktop\Bookl\Book2\Gaming_Store\Gaming_Store\
+2023-06-12 15:37:30.281 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7083/swagger/index.html - -
+2023-06-12 15:37:31.116 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7083/swagger/index.html - - - 200 - text/html;charset=utf-8 847.9208ms
+2023-06-12 15:37:31.161 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7083/_vs/browserLink - -
+2023-06-12 15:37:31.161 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7083/_framework/aspnetcore-browser-refresh.js - -
+2023-06-12 15:37:31.179 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7083/_framework/aspnetcore-browser-refresh.js - - - 200 11994 application/javascript;+charset=utf-8 17.9504ms
+2023-06-12 15:37:31.275 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7083/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 114.4558ms
+2023-06-12 15:37:31.470 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7083/swagger/v1/swagger.json - -
+2023-06-12 15:37:31.725 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7083/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 254.7729ms
