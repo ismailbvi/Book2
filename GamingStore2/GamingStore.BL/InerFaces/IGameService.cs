@@ -10,10 +10,10 @@ namespace GamingStore.BL.InerFaces
 {
     public interface IGameService
     {
-        GameDto GetById(int id);
-        IEnumerable<GameDto> GetAll();
-        void CreateGame(CreateGameDto createGameDto);
-        void UpdateGame(int id, UpdateGameDto updateGameDto);
+        GameDto GetGameById(int id);
+        IEnumerable<GameDto> GetAllGames();
+        void AddGame(CreateGameDto gameDto);
+        void UpdateGame( UpdateGameDto gameDto);
         void DeleteGame(int id);
     }
 }

@@ -8,6 +8,6 @@ namespace Gaming_Store_Data.Data
 {
     public class Order : OrderDto
     {
-        public int Quantity { get; set; }
+        public string Name { get; set; }
     }
 }

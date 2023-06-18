@@ -15,9 +15,9 @@ public class GameController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public ActionResult<GameDto> GetById(int id)
+    public ActionResult<GameDto> GetGameById(int id)
     {
-        var game = _gameService.GetById(id);
+        var game = _gameService.GetGameById(id);
         if (game == null)
         {
             return NotFound();
@@ -26,32 +26,32 @@ public class GameController : ControllerBase
     }
 
     [HttpGet]
-    public ActionResult<IEnumerable<GameDto>> GetAll()
+    public ActionResult<IEnumerable<GameDto>> GetAllGames()
     {
-        var games = _gameService.GetAll();
+        var games = _gameService.GetAllGames();
         return Ok(games);
     }
 
     [HttpPost]
-    public IActionResult CreateGame(CreateGameDto createGameDto)
+    public IActionResult AddGame(CreateGameDto gameDto)
     {
-        // Perform any validation or additional logic
-        _gameService.CreateGame(createGameDto);
+       
+        _gameService.AddGame(gameDto);
         return Ok();
     }
 
     [HttpPut("{id}")]
-    public IActionResult UpdateGame(int id, UpdateGameDto updateGameDto)
+    public IActionResult UpdateGame(UpdateGameDto gameDto)
     {
-        // Perform any validation or additional logic
-        _gameService.UpdateGame(id, updateGameDto);
+        
+        _gameService.UpdateGame(gameDto);
         return Ok();
     }
 
     [HttpDelete("{id}")]
     public IActionResult DeleteGame(int id)
     {
-        // Perform any validation or additional logic
+        
         _gameService.DeleteGame(id);
         return Ok();
     }

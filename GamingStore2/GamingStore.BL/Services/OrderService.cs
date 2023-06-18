@@ -18,49 +18,39 @@ namespace GamingStore.BL.Services
             _mapper = mapper;
         }
 
-        public OrderDto GetById(int id)
+        public OrderDto GetOrderById(int id)
         {
-            var order = _orderRepository.GetById(id);
+            Order order = _orderRepository.GetById(id);
             return _mapper.Map<OrderDto>(order);
         }
 
-        public IEnumerable<OrderDto> GetAll()
+        public IEnumerable<OrderDto> GetAllOrders()
         {
-            var orders = _orderRepository.GetAll();
+            IEnumerable<Order> orders = _orderRepository.GetAll();
             return _mapper.Map<IEnumerable<OrderDto>>(orders);
         }
 
-        public void CreateOrder(CreateOrderDto createOrderDto)
+        public void AddOrder(CreateOrderDto orderDto)
         {
-            var order = _mapper.Map<Order>(createOrderDto);
-            // Perform any additional logic or validation
+            Order order = _mapper.Map<Order>(orderDto);
             _orderRepository.Add(order);
         }
 
-        public void UpdateOrder(int id, UpdateOrderDto updateOrderDto)
+        public void UpdateOrder(UpdateOrderDto orderDto)
         {
-            var order = _orderRepository.GetById(id);
-            if (order == null)
+            Order existingOrder = _orderRepository.GetById(orderDto.Id);
+            if (existingOrder == null)
             {
-                throw new NotFoundException("Order not found.");
+                return;
             }
 
-            _mapper.Map(updateOrderDto, order);
-            // Perform any additional logic or validation
-            _orderRepository.Update(order);
+            Order updatedOrder = _mapper.Map(orderDto, existingOrder);
+            _orderRepository.Update(updatedOrder);
         }
 
         public void DeleteOrder(int id)
         {
-            var order = _orderRepository.GetById(id);
-            if (order == null)
-            {
-                throw new NotFoundException("Order not found.");
-            }
-
-            // Perform any additional logic or validation
             _orderRepository.Delete(id);
         }
     }
-
 }

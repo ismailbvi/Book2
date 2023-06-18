@@ -1,92 +1,61 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using AutoMapper;
+using FluentValidation;
 using FluentValidation.AspNetCore;
-using Serilog;
-using MongoDB.Driver;
-using GamingStore.Repositories;
-using GamingStore.Services;
-using GamingStore.Models;
-using GamingStore.Controllers;
-using GamingStore.Extensions;
+using Gaming_Store_Data.Config;
 using GamingStore.BL.InerFaces;
 using GamingStore.BL.Services;
 using GamingStore.DL.InerFaces;
 using GamingStore.DL.Repo;
+using GamingStore2.Extensions;
+using GamingStore2.Healthchecks;
+using Microsoft.OpenApi.Models;
+using Serilog;
+using Serilog.Sinks.SystemConsole.Themes;
 
-namespace GamingStore2
+var logger = new LoggerConfiguration()
+.Enrich.FromLogContext()
+    .WriteTo.Console(theme: AnsiConsoleTheme.Literate)
+    .CreateLogger();
+
+var builder = WebApplication.CreateBuilder(args);
+builder.Logging.AddSerilog(logger);
+
+builder.Services.Configure<MongoConfiguration>(
+    builder.Configuration
+    .GetSection(nameof(MongoConfiguration)));
+
+builder.Services.AddSingleton<IGameRepository, MongoGameRepo>();
+builder.Services.AddSingleton<IOrderRepository, MongoOrderRepo>();
+builder.Services.AddSingleton<IGameService, GameService>();
+builder.Services.AddSingleton<IOrderService, OrderService>();
+
+builder.Services.AddAutoMapper(typeof(Program));
+
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+builder.Services.AddFluentValidationAutoValidation()
+    .AddFluentValidationClientsideAdapters();
+builder.Services
+    .AddValidatorsFromAssemblyContaining(typeof(Program));
+   
+builder.Services.AddHealthChecks()
+    .AddCheck<MongoHealthCheck>("MongoDB")
+    .AddUrlGroup (new Uri("https://google.bg"), "My Service");
+var app = builder.Build();
+
+if (app.Environment.IsDevelopment())
 {
-    public class Program
-    {
-        public IConfiguration Configuration { get; }
-
-        public Program(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
-
-        public void ConfigureServices(IServiceCollection services)
-        {
-            // Add MongoDB
-            services.AddSingleton<IMongoClient>(c => new MongoClient(Configuration.GetConnectionString("MongoDB")));
-            services.AddScoped<IMongoDatabase>(c => c.GetService<IMongoClient>().GetDatabase(Configuration.GetValue<string>("MongoDB:DatabaseName")));
-
-            // Add repositories
-            services.AddScoped<IGameRepository, GameRepository>();
-            services.AddScoped<IOrderRepository, OrderRepository>();
-
-            // Add services
-            services.AddScoped<IGameService, GameService>();
-            services.AddScoped<IOrderService, OrderService>();
-
-            // Add AutoMapper
-            services.AddAutoMapper(typeof(Program));
-
-            // Add FluentValidation
-            services.AddControllers()
-                .AddFluentValidation(fv =>
-                {
-                    fv.RegisterValidatorsFromAssemblyContaining<Program>();
-                });
-
-            // Add Serilog
-            services.AddLogging(loggingBuilder =>
-                loggingBuilder.AddSerilog(dispose: true));
-
-            // Add health checks
-            services.AddHealthChecks();
-
-            // Add authentication (e.g., using JWT)
-            // services.AddAuthentication(...)
-            //     .AddJwtBearer(...);
-
-            services.AddControllers();
-        }
-
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-        {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-
-            // Enable health checks endpoint
-            app.UseHealthChecks("/health");
-
-            app.UseRouting();
-
-            // Enable authentication
-            // app.UseAuthentication();
-            // app.UseAuthorization();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
-        }
-    }
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 
+app.UseHttpsRedirection();
+
+app.UseAuthorization();
+
+app.RegisterHealthChecks();
+
+app.MapControllers();
+
+app.Run();

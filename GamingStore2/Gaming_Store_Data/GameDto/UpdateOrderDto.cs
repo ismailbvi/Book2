@@ -8,6 +8,7 @@ namespace Gaming_Store_Data.GameDto
 {
     public class UpdateOrderDto
     {
-        public int Quantity { get; set; }
+        public int Used { get; set; }
+        public int Id { get; set; }
     }
 }

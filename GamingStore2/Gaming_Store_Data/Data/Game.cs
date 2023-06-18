@@ -8,7 +8,7 @@ namespace Gaming_Store_Data.Data
 {
     public class Game : GameDto
     {
-        public string Name { get; set; }
+        public string Discription { get; set; }
        
     }
 }

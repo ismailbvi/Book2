@@ -10,6 +10,6 @@ namespace Gaming_Store_Data.Data
     {
         public int Id { get; set; }
         public int GameId { get; set; }
-        public decimal TotalPrice { get; set; }
+        public double TotalPrice { get; set; }
     }
 }

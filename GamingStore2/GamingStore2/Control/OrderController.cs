@@ -15,9 +15,9 @@ public class OrderController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public ActionResult<OrderDto> GetById(int id)
+    public ActionResult<OrderDto> GetOrderById(int id)
     {
-        var order = _orderService.GetById(id);
+        var order = _orderService.GetOrderById(id);
         if (order == null)
         {
             return NotFound();
@@ -26,32 +26,32 @@ public class OrderController : ControllerBase
     }
 
     [HttpGet]
-    public ActionResult<IEnumerable<OrderDto>> GetAll()
+    public ActionResult<IEnumerable<OrderDto>> GetAllOrders()
     {
-        var orders = _orderService.GetAll();
+        var orders = _orderService.GetAllOrders();
         return Ok(orders);
     }
 
     [HttpPost]
-    public IActionResult CreateOrder(CreateOrderDto createOrderDto)
+    public IActionResult AddOrder(CreateOrderDto orderDto)
     {
-        // Perform any validation or additional logic
-        _orderService.CreateOrder(createOrderDto);
+        
+        _orderService.AddOrder(orderDto);
         return Ok();
     }
 
     [HttpPut("{id}")]
-    public IActionResult UpdateOrder(int id, UpdateOrderDto updateOrderDto)
+    public IActionResult UpdateOrder(UpdateOrderDto orderDto)
     {
-        // Perform any validation or additional logic
-        _orderService.UpdateOrder(id, updateOrderDto);
+       
+        _orderService.UpdateOrder(orderDto);
         return Ok();
     }
 
     [HttpDelete("{id}")]
     public IActionResult DeleteOrder(int id)
     {
-        // Perform any validation or additional logic
+        
         _orderService.DeleteOrder(id);
         return Ok();
     }

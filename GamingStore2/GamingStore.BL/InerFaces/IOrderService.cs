@@ -5,10 +5,10 @@ namespace GamingStore.BL.InerFaces
 {
     public interface IOrderService
     {
-        OrderDto GetById(int id);
-        IEnumerable<OrderDto> GetAll();
-        void CreateOrder(CreateOrderDto createOrderDto);
-        void UpdateOrder(int id, UpdateOrderDto updateOrderDto);
+        OrderDto GetOrderById(int id);
+        IEnumerable<OrderDto> GetAllOrders();
+        void AddOrder(CreateOrderDto orderDto);
+        void UpdateOrder(UpdateOrderDto orderDto);
         void DeleteOrder(int id);
     }
 }
