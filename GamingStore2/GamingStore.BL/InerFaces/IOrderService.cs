@@ -1,14 +1,13 @@
 ﻿using Gaming_Store_Data.Data;
-using Gaming_Store_Data.GameDto;
+using Gaming_Store_Data.Request;
 
 namespace GamingStore.BL.InerFaces
 {
     public interface IOrderService
     {
-        OrderDto GetOrderById(int id);
-        IEnumerable<OrderDto> GetAllOrders();
-        void AddOrder(CreateOrderDto orderDto);
-        void UpdateOrder(UpdateOrderDto orderDto);
-        void DeleteOrder(int id);
+        Task<IEnumerable<Order>> GetAll();
+        Task<Order?> GetById(Guid id);
+        Task<Order?> Add(Order game);
+        Task Delete(Guid id);
     }
 }

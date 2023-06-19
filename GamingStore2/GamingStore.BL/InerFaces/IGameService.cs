@@ -1,5 +1,5 @@
 ﻿using Gaming_Store_Data.Data;
-using Gaming_Store_Data.GameDto;
+using Gaming_Store_Data.Request;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +10,9 @@ namespace GamingStore.BL.InerFaces
 {
     public interface IGameService
     {
-        GameDto GetGameById(int id);
-        IEnumerable<GameDto> GetAllGames();
-        void AddGame(CreateGameDto gameDto);
-        void UpdateGame( UpdateGameDto gameDto);
-        void DeleteGame(int id);
+        Task<IEnumerable<Game>> GetAll();
+        Task<Game> GetById(Guid id);
+        Task<Game> AddGame(AddGameRequest gameRequest);
+        Task DeleteGame(Guid id);
     }
 }

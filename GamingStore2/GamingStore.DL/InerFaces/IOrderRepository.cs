@@ -9,10 +9,10 @@ namespace GamingStore.DL.InerFaces
 {
     public interface IOrderRepository
     {
-        Order GetById(int id);
-        IEnumerable<Order> GetAll();
-        void Add(Order order);
-        void Update(Order order);
-        void Delete(int id);
+        Task<IEnumerable<Order>> GetAll();
+        Task<IEnumerable<Order>> GetAllByGameId(Guid gameId);
+        Task<Order?> GetById(Guid id);
+        Task Add(Order game);
+        Task Delete(Guid id);
     }
 }

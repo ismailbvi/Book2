@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33424.131
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GamingStore2", "GamingStore2\GamingStore2.csproj", "{5043285F-3B48-409D-B6BD-6749357E0C05}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GamingStore2", "GamingStore2\GamingStore2.csproj", "{5043285F-3B48-409D-B6BD-6749357E0C05}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gaming_Store_Data", "Gaming_Store_Data\Gaming_Store_Data.csproj", "{AA70ECB2-5E80-4D7E-9564-A70672E3FC85}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gaming_Store_Data", "Gaming_Store_Data\Gaming_Store_Data.csproj", "{AA70ECB2-5E80-4D7E-9564-A70672E3FC85}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GamingStore.DL", "GamingStore.DL\GamingStore.DL.csproj", "{047D39A7-4015-4C3B-A0CB-9958013939A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GamingStore.DL", "GamingStore.DL\GamingStore.DL.csproj", "{047D39A7-4015-4C3B-A0CB-9958013939A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GamingStore.BL", "GamingStore.BL\GamingStore.BL.csproj", "{2F20F025-6333-427D-AB74-728481BBDD79}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GamingStore.BL", "GamingStore.BL\GamingStore.BL.csproj", "{2F20F025-6333-427D-AB74-728481BBDD79}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{BB728209-2818-4707-9A02-23DE7BA8E0B0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{2F20F025-6333-427D-AB74-728481BBDD79}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2F20F025-6333-427D-AB74-728481BBDD79}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2F20F025-6333-427D-AB74-728481BBDD79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB728209-2818-4707-9A02-23DE7BA8E0B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB728209-2818-4707-9A02-23DE7BA8E0B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB728209-2818-4707-9A02-23DE7BA8E0B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB728209-2818-4707-9A02-23DE7BA8E0B0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

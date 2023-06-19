@@ -4,10 +4,9 @@ namespace GamingStore.DL.InerFaces
 {
     public interface IGameRepository
     {
-        Game GetById(int id);
-        IEnumerable<Game> GetAll();
-        void Add(Game game);
-        void Update(Game game);
-        void Delete(int id);
+        Task<Game> GetById(Guid id);
+        Task<IEnumerable<Game>> GetAll();
+        Task Add(Game game);
+        Task Delete(Guid id);
     }
 }

@@ -1,21 +1,17 @@
 ﻿using FluentValidation;
-using Gaming_Store_Data.GameDto;
+using Gaming_Store_Data.Request;
 
 namespace GamingStore2.Validators
 {
-    public class AddGameValidator : AbstractValidator<CreateGameDto>
+    public class AddGameValidator : AbstractValidator<AddGameRequest>
     {
         public AddGameValidator()
         {
-            RuleFor(game => game.Name)
+            RuleFor(game => game.Spacification)
                 .NotEmpty().WithMessage("Title is required.")
                 .MaximumLength(100).WithMessage("Title must not exceed 100 characters.");
 
-            RuleFor(game => game.Price)
-                .NotEmpty().WithMessage("Price is required.")
-                .GreaterThan(0).WithMessage("Price must be greater than zero.");
-
-            RuleFor(game => game.Price)
+            RuleFor(game => game.Description)
                 .NotEmpty().WithMessage("Release date is required.");
         }
     }
