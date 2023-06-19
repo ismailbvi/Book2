@@ -1,5 +1,8 @@
-﻿using Gaming_Store_Data.Data;
+﻿using Gaming_Store_Data.Config;
+using Gaming_Store_Data.Data;
 using GamingStore.DL.InerFaces;
+using Microsoft.Extensions.Options;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -11,36 +14,55 @@ namespace GamingStore.DL.Repo
 {
     public class MongoOrderRepo : IOrderRepository
     {
-        private readonly IMongoCollection<Order> _orderCollection;
+        private readonly IMongoCollection<Order> _orders;
+        private readonly IOptionsMonitor<MongoConfiguration> _config;
 
-        public MongoOrderRepo(IMongoDatabase database)
+        public MongoOrderRepo(
+            IOptionsMonitor<MongoConfiguration> config)
         {
-            _orderCollection = database.GetCollection<Order>("orders");
+            _config = config;
+            var client =
+                new MongoClient(_config.CurrentValue.ConnectionString);
+            var database =
+                client.GetDatabase(_config.CurrentValue.DatabaseName);
+
+            _orders =
+                database.GetCollection<Order>($"{nameof(Order)}",
+                    new MongoCollectionSettings()
+                    {
+                        GuidRepresentation = GuidRepresentation.Standard
+                    });
         }
 
-        public Order GetById(int id)
+        public async Task<IEnumerable<Order>> GetAll()
         {
-            return _orderCollection.Find(order => order.Id == id).FirstOrDefault();
+            return await _orders.Find(order => true)
+                .ToListAsync();
         }
 
-        public IEnumerable<Order> GetAll()
+        public async Task<IEnumerable<Order>> GetAllByGameId(Guid gameId)
         {
-            return _orderCollection.Find(_ => true).ToList();
+            return await _orders
+                .Find(a => a.GameId == gameId)
+                .ToListAsync();
         }
 
-        public void Add(Order order)
+        public async Task<Order?> GetById(Guid id)
         {
-            _orderCollection.InsertOne(order);
+            return await _orders
+                .Find(a => a.Id == id)
+                .FirstOrDefaultAsync();
         }
 
-        public void Update(Order order)
+        public async Task Add(Order game)
         {
-            _orderCollection.ReplaceOne(existingOrder => existingOrder.Id == order.Id, order);
+            await _orders.InsertOneAsync(game);
         }
 
-        public void Delete(int id)
+        public async Task Delete(Guid id)
         {
-            _orderCollection.DeleteOne(order => order.Id == id);
+            await _orders
+                .DeleteOneAsync(a => a.Id == id);
         }
     }
 }

@@ -1,56 +1,79 @@
 ﻿using Gaming_Store_Data.Data;
 using GamingStore.DL.InerFaces;
 using AutoMapper;
-using Gaming_Store_Data.GameDto;
 using GamingStore.BL.InerFaces;
-
+using Microsoft.Extensions.Logging;
+using Gaming_Store_Data.Request;
 
 namespace GamingStore.BL.Services
 {
     public class OrderService : IOrderService
     {
         private readonly IOrderRepository _orderRepository;
-        private readonly IMapper _mapper;
+        private readonly ILogger<OrderService> _logger;
+        private readonly IGameService _gameService;
 
-        public OrderService(IOrderRepository orderRepository, IMapper mapper)
+        public OrderService(IOrderRepository orderRepository,
+            ILogger<OrderService> logger)
         {
             _orderRepository = orderRepository;
-            _mapper = mapper;
+            _logger = logger;
+
         }
 
-        public OrderDto GetOrderById(int id)
+        public async Task<IEnumerable<Game>> GetAll()
         {
-            Order order = _orderRepository.GetById(id);
-            return _mapper.Map<OrderDto>(order);
+            var result =
+                 await _orderRepository.GetAll();
+
+            return (IEnumerable<Game>)result;
+
         }
 
-        public IEnumerable<OrderDto> GetAllOrders()
+        public async Task<Order?> GetById(Guid id)
         {
-            IEnumerable<Order> orders = _orderRepository.GetAll();
-            return _mapper.Map<IEnumerable<OrderDto>>(orders);
-        }
+            var game = await _orderRepository.GetById(id);
 
-        public void AddOrder(CreateOrderDto orderDto)
-        {
-            Order order = _mapper.Map<Order>(orderDto);
-            _orderRepository.Add(order);
-        }
-
-        public void UpdateOrder(UpdateOrderDto orderDto)
-        {
-            Order existingOrder = _orderRepository.GetById(orderDto.Id);
-            if (existingOrder == null)
+            if (game == null)
             {
-                return;
+                _logger.LogError($"GetById:{id} returns null!");
+                return null;
             }
 
-            Order updatedOrder = _mapper.Map(orderDto, existingOrder);
-            _orderRepository.Update(updatedOrder);
+            return game;
         }
 
-        public void DeleteOrder(int id)
+        public async Task<Order?> Add(Order order)
         {
-            _orderRepository.Delete(id);
+            order.Id = Guid.NewGuid();
+
+            var game =
+                await _gameService.GetById(order.GameId);
+
+            if (game == null) return null;
+
+            var gameOrders =
+                await _orderRepository
+                    .GetAllByGameId(order.GameId);
+
+            var titleForGameExist =
+                gameOrders.Any(b => b.Name == order.Name);
+
+            if (titleForGameExist) return null;
+
+            await _orderRepository.Add(order);
+
+            return order;
+        }
+
+        public async Task Delete(Guid id)
+        {
+            await _orderRepository.Delete(id);
+        }
+
+        Task<IEnumerable<Order>> IOrderService.GetAll()
+        {
+            throw new NotImplementedException();
         }
     }
 }

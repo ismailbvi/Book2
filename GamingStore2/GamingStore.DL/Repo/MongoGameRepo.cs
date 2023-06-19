@@ -9,36 +9,48 @@ namespace GamingStore.DL.Repo
 {
     public class MongoGameRepo : IGameRepository
     {
-    private readonly IMongoCollection<Game> _gameCollection;
+        private readonly IMongoCollection<Game> _games;
+        private readonly IOptionsMonitor<MongoConfiguration> _config;
 
-        public MongoGameRepo(IMongoDatabase database)
+        public MongoGameRepo(
+            IOptionsMonitor<MongoConfiguration> config)
         {
-            _gameCollection = database.GetCollection<Game>("games");
+            _config = config;
+            var client =
+                new MongoClient(_config.CurrentValue.ConnectionString);
+            var database =
+                client.GetDatabase(_config.CurrentValue.DatabaseName);
+
+            _games =
+                database.GetCollection<Game>($"{nameof(Game)}",
+                    new MongoCollectionSettings()
+                    {
+                        GuidRepresentation = GuidRepresentation.Standard
+                    });
         }
 
-        public Game GetById(int id)
+        public async Task<IEnumerable<Game>> GetAll()
         {
-            return _gameCollection.Find(game => game.Id == id).FirstOrDefault();
+            return await _games.Find(game => true)
+                .ToListAsync();
         }
 
-        public IEnumerable<Game> GetAll()
+        public async Task<Game> GetById(Guid id)
         {
-            return _gameCollection.Find(_ => true).ToList();
+            return await _games
+                .Find(a => a.Id == id)
+                .FirstOrDefaultAsync();
         }
 
-        public void Add(Game game)
+        public async Task Add(Game game)
         {
-            _gameCollection.InsertOne(game);
+            await _games.InsertOneAsync(game);
         }
 
-        public void Update(Game game)
+        public async Task Delete(Guid id)
         {
-            _gameCollection.ReplaceOne(existingGame => existingGame.Id == game.Id, game);
-        }
-
-        public void Delete(int id)
-        {
-            _gameCollection.DeleteOne(game => game.Id == id);
+            await _games
+                .DeleteOneAsync(a => a.Id == id);
         }
     }
 }

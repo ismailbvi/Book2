@@ -1,58 +1,65 @@
 ﻿using Gaming_Store_Data.Data;
-using Gaming_Store_Data.GameDto;
+using Gaming_Store_Data.Request;
 using GamingStore.BL.InerFaces;
+using GamingStore.DL.InerFaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-[ApiController]
-[Route("api/games")]
-public class GameController : ControllerBase
+namespace GamingStore2.Control
 {
-    private readonly IGameService _gameService;
-
-    public GameController(IGameService gameService)
+    [ApiController]
+    [Route("[controller]")]
+    public class GameController : ControllerBase
     {
-        _gameService = gameService;
-    }
+        private readonly IOrderService _orderService;
 
-    [HttpGet("{id}")]
-    public ActionResult<GameDto> GetGameById(int id)
-    {
-        var game = _gameService.GetGameById(id);
-        if (game == null)
+        public GameController(IOrderService orderService)
         {
+            _orderService = orderService;
+        }
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<Order>))]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [HttpGet("GetAllOrders")]
+        [Authorize]
+        public async Task<IActionResult> GetAll()
+        {
+            var result = await _orderService.GetAll();
+
+            if (result != null && result.Any()) return Ok(result);
+
             return NotFound();
         }
-        return Ok(game);
-    }
 
-    [HttpGet]
-    public ActionResult<IEnumerable<GameDto>> GetAllGames()
-    {
-        var games = _gameService.GetAllGames();
-        return Ok(games);
-    }
+        [ProducesResponseType(StatusCodes.Status200OK,
+            Type = typeof(Order))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
 
-    [HttpPost]
-    public IActionResult AddGame(CreateGameDto gameDto)
-    {
-       
-        _gameService.AddGame(gameDto);
-        return Ok();
-    }
+        [HttpGet("GetById")]
+        public async Task<IActionResult> GetById(Guid id)
+        {
+            if (id == null) return BadRequest(id);
 
-    [HttpPut("{id}")]
-    public IActionResult UpdateGame(UpdateGameDto gameDto)
-    {
-        
-        _gameService.UpdateGame(gameDto);
-        return Ok();
-    }
+            var result = await _orderService.GetById(id);
 
-    [HttpDelete("{id}")]
-    public IActionResult DeleteGame(int id)
-    {
-        
-        _gameService.DeleteGame(id);
-        return Ok();
+            if (result != null) return Ok(result);
+
+            return NotFound();
+        }
+
+        [HttpPost("Add")]
+        public async Task Add([FromBody] Order order)
+        {
+            await _orderService.Add(order);
+        }
+
+
+        [HttpDelete("Delete")]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            await _orderService.Delete(id);
+
+            return Ok();
+        }
     }
 }
