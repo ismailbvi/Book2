@@ -29,7 +29,7 @@ namespace GamingStore.BL.Services
             return await _gameRepository.GetById(id);
         }
 
-        public async Task AddGame(AddGameRequest gameRequest)
+        public async Task<Game> AddGame(AddGameRequest gameRequest)
         {
             var game
                 = _mapper.Map<Game>(gameRequest);
@@ -37,6 +37,7 @@ namespace GamingStore.BL.Services
             game.Id = Guid.NewGuid();
 
             await _gameRepository.Add(game);
+            return game;
         }
 
         public async Task DeleteGame(Guid id)

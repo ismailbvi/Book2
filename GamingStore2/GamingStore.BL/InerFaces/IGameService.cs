@@ -12,7 +12,7 @@ namespace GamingStore.BL.InerFaces
     {
         Task<IEnumerable<Game>> GetAll();
         Task<Game> GetById(Guid id);
-        Task AddGame(AddGameRequest gameRequest);
+        Task<Game> AddGame(AddGameRequest gameRequest);
         Task DeleteGame(Guid id);
     }
 }
